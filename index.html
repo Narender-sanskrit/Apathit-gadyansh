@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="sa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>अपठित गद्यांश - संस्कृत</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 0; background: transparent; }
+  .sg-wrapper * { margin: 0; padding: 0; box-sizing: border-box; }
+  .sg-wrapper {
+    font-family: 'Noto Sans Devanagari', 'Tiro Devanagari Sanskrit', sans-serif;
+    background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d0 100%);
+    padding: 20px 12px;
+    border-radius: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #2c2416;
+    line-height: 1.9;
+  }
+  .sg-header {
+    text-align: center;
+    padding: 18px 10px 22px;
+    background: linear-gradient(135deg, #8b5e2b, #a0713a);
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(139, 94, 43, 0.3);
+  }
+  .sg-header h1 {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    color: #fff8e7;
+    font-size: 1.7em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  .sg-header p { color: #f5e6c8; font-size: 0.95em; margin-top: 6px; }
+  .sg-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+    justify-content: center;
+  }
+  .sg-tab-btn {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    background: #fff;
+    border: 2px solid #d4c4a8;
+    color: #6b4c1e;
+    padding: 10px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    flex: 1 1 auto;
+    min-width: 120px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .sg-tab-btn:hover {
+    background: #fdf8ee;
+    border-color: #b8956a;
+    transform: translateY(-2px);
+  }
+  .sg-tab-btn.active {
+    background: linear-gradient(135deg, #8b5e2b, #a0713a);
+    color: #fff;
+    border-color: #8b5e2b;
+    box-shadow: 0 4px 12px rgba(139, 94, 43, 0.35);
+  }
+  .sg-panel {
+    display: none;
+    background: #fffdf8;
+    border-radius: 14px;
+    padding: 22px 18px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid #e8dcc8;
+    animation: sgFade 0.4s ease;
+  }
+  .sg-panel.active { display: block; }
+  @keyframes sgFade {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .sg-panel h2 {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    color: #8b5e2b;
+    font-size: 1.3em;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed #d4c4a8;
+    text-align: center;
+  }
+  .sg-passage {
+    font-family: 'Tiro Devanagari Sanskrit', serif;
+    font-size: 1.05em;
+    line-height: 2.1;
+    text-align: justify;
+    color: #3a2e1c;
+    background: #fdfaf3;
+    padding: 16px;
+    border-radius: 10px;
+    border-left: 4px solid #b8956a;
+    margin-bottom: 18px;
+  }
+  .sg-passage .sg-shloka {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    color: #6b4c1e;
+    margin: 10px 0;
+    font-style: italic;
+  }
+  .sg-section-title {
+    font-weight: 700;
+    color: #8b5e2b;
+    font-size: 1.05em;
+    margin: 18px 0 8px;
+    padding: 8px 12px;
+    background: #f5ecd8;
+    border-radius: 8px;
+    border-left: 3px solid #a0713a;
+  }
+  .sg-q { margin: 10px 0 10px 6px; color: #3a2e1c; }
+  .sg-q .sg-qnum { font-weight: 700; color: #8b5e2b; }
+  .sg-options {
+    margin: 4px 0 12px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+    font-size: 0.97em;
+  }
+  .sg-options span { color: #4a3c28; }
+  
+  /* Button CSS for Text */
+  .sg-answer-btn {
+    display: block;
+    width: 100%;
+    margin-top: 22px;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(46, 125, 50, 0.3);
+  }
+  .sg-answer-btn:hover {
+    background: linear-gradient(135deg, #1b5e20, #2e7d32);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4);
+  }
+  .sg-answer-btn::before { 
+    content: "उत्तर-कुञ्जिकां दर्शय ▾"; 
+  }
+  .sg-answer-btn.open::before { 
+    content: "उत्तर-कुञ्जिकां गोपय ▴"; 
+  }
+  
+  .sg-answer-box {
+    display: none;
+    margin-top: 12px;
+    padding: 16px;
+    background: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    border-radius: 10px;
+    font-size: 0.97em;
+    line-height: 2;
+    color: #1b5e20;
+    animation: sgFade 0.3s ease;
+  }
+  .sg-answer-box.open { display: block; }
+  .sg-answer-box h4 {
+    color: #1b5e20;
+    font-size: 1.05em;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #a5d6a7;
+  }
+  .sg-answer-box .sg-ans-item { margin: 6px 0; }
+  .sg-answer-box .sg-ans-item b { color: #2e7d32; }
+  .sg-footer {
+    text-align: center;
+    margin-top: 24px;
+    padding: 16px;
+    background: linear-gradient(135deg, #8b5e2b, #a0713a);
+    border-radius: 12px;
+    color: #fff8e7;
+    font-size: 0.95em;
+    box-shadow: 0 4px 12px rgba(139, 94, 43, 0.3);
+  }
+  .sg-footer a {
+    color: #ffe9b8;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px dotted #ffe9b8;
+  }
+  .sg-footer a:hover { color: #fff; }
+  @media (max-width: 600px) {
+    .sg-wrapper { padding: 14px 8px; }
+    .sg-header h1 { font-size: 1.3em; }
+    .sg-tab-btn { font-size: 0.82em; padding: 8px 10px; min-width: 95px; }
+    .sg-panel { padding: 16px 12px; }
+    .sg-passage { font-size: 1em; padding: 12px; }
+    .sg-options { grid-template-columns: 1fr; margin-left: 12px; }
+    .sg-section-title { font-size: 0.97em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sg-wrapper">
+  <div class="sg-header">
+    <h1>अपठित गद्यांशाः</h1>
+    <p>कक्षा 9-10 | संस्कृतम्</p>
+  </div>
+
+  <div class="sg-tabs">
+    <button class="sg-tab-btn active" onclick="sgShow(0)">गद्यांश 1</button>
+    <button class="sg-tab-btn" onclick="sgShow(1)">गद्यांश 2</button>
+    <button class="sg-tab-btn" onclick="sgShow(2)">गद्यांश 3</button>
+    <button class="sg-tab-btn" onclick="sgShow(3)">गद्यांश 4</button>
+    <button class="sg-tab-btn" onclick="sgShow(4)">गद्यांश 5</button>
+    <button class="sg-tab-btn" onclick="sgShow(5)">गद्यांश 6</button>
+    <button class="sg-tab-btn" onclick="sgShow(6)">गद्यांश 7</button>
+    <button class="sg-tab-btn" onclick="sgShow(7)">गद्यांश 8</button>
+    <button class="sg-tab-btn" onclick="sgShow(8)">गद्यांश 9</button>
+    <button class="sg-tab-btn" onclick="sgShow(9)">गद्यांश 10</button>
+    <button class="sg-tab-btn" onclick="sgShow(10)">गद्यांश 11</button>
+    <button class="sg-tab-btn" onclick="sgShow(11)">गद्यांश 12</button>
+    <button class="sg-tab-btn" onclick="sgShow(12)">गद्यांश 13</button>
+    <button class="sg-tab-btn" onclick="sgShow(13)">गद्यांश 14</button>
+    <button class="sg-tab-btn" onclick="sgShow(14)">गद्यांश 15</button>
+    <button class="sg-tab-btn" onclick="sgShow(15)">गद्यांश 16</button>
+    <button class="sg-tab-btn" onclick="sgShow(16)">गद्यांश 17</button>
+    <button class="sg-tab-btn" onclick="sgShow(17)">गद्यांश 18</button>
+    <button class="sg-tab-btn" onclick="sgShow(18)">गद्यांश 19</button>
+    <button class="sg-tab-btn" onclick="sgShow(19)">गद्यांश 20</button>
+  </div>
+
+  <!-- ==================== गद्यांश 1 ==================== -->
+  <div class="sg-panel active" id="sg-panel-0">
+    <h2>गद्यांश 1 — परोपकारः</h2>
+    <div class="sg-passage">
+      परोपकारः अर्थात् परेषाम् उपकारः अस्ति । परोपकारस्य प्रवृत्त्या एव मनुष्यः पशुभ्यः पृथक् भवति । आहारादिप्रवृत्तिषु पशवः मानवैः समं भवन्ति, परं मानवः स्वविवेकेन ज्ञानेन च आत्मनः उन्नतिं करोति । अपि च, न केवलं मानवाः अपितु अस्माकं प्रकृतिः अपि परेभ्यः एव अस्ति । यथा वृक्षाः स्वफलानि न खादन्ति, ते परेषां कृते एव फलानि छायां च यच्छन्ति । नद्यः परोपकाराय एव वहन्ति । गावः अन्येभ्यः एव दुग्धं यच्छन्ति । अस्माकं पुण्यभूमौ अनेके महापुरुषाः अभवन् ये स्वप्राणान् परित्यज्य देशस्य समाजस्य च रक्षाम् अकुर्वन् । राजा शिविः शरणागतस्य कपोतस्य रक्षायै स्वशरीरस्य मांसं कर्तयित्वा श्येनाय दत्तवान् । ऋषिः दधीचिः अपि वृत्रासुरवधाय स्वास्थीनि सहर्षम् अयच्छत् । अद्यापि लोके अनेके समाजसुधारकाः सन्ति ये स्वार्थं परित्यज्य लोककल्याणं कुर्वन्ति ।
+      <span class="sg-shloka">अष्टादशपुराणेषु व्यासस्य वचनद्वयम् ।<br>परोपकारः पुण्याय पापाय परपीडनम् ॥</span>
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> का परोपकाराय एव भवन्ति ?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> केषु पशवः मानवैः समं भवन्ति ?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> कः वृत्रासुरवधाय स्वास्थीनि सहर्षम् अयच्छत् ?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> मनुष्यः पशुभ्यः कथं पृथक् भवति ?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> राजा शिविः शरणागतस्य कपोतस्य रक्षायै किं कृतवान् ?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> मानवः केन आत्मनः उन्नतिं करोति ?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत ।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘गावः अन्येभ्यः एव दुग्धं यच्छति’ अत्र किं कर्तृपदम् ?</div>
+    <div class="sg-options">
+      <span>(A) गावः</span><span>(B) अन्येभ्यः</span>
+      <span>(C) यच्छन्ति</span><span>(D) एव</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘दधीचिः’ इति विशेषणपदस्य विशेष्यपदं किम् ?</div>
+    <div class="sg-options">
+      <span>(A) ऋषिः</span><span>(B) गावः</span>
+      <span>(C) मानवः</span><span>(D) पशवः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘तरवः’ इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम् ?</div>
+    <div class="sg-options">
+      <span>(A) नद्यः</span><span>(B) वृक्षाः</span>
+      <span>(C) गावः</span><span>(D) फलानि</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘ते परेषां कृते एव फलानि छायां च यच्छन्ति’ अस्मिन् वाक्ये ‘ते’ इति पदं कस्मै प्रयुक्तम् ?</div>
+    <div class="sg-options">
+      <span>(A) जनेभ्यः</span><span>(B) सर्वेभ्यः</span>
+      <span>(C) नदीभ्यः</span><span>(D) वृक्षेभ्यः</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 1</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) नद्यः (ii) आहारादिप्रवृत्तिषु (iii) ऋषिः दधीचिः</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) मनुष्यः स्वविवेकेन ज्ञानेन च पशुभ्यः पृथक् भवति । (ii) राजा शिविः शरणागतस्य कपोतस्य रक्षायै स्वशरीरस्य मांसं कर्तयित्वा श्येनाय दत्तवान् । (iii) मानवः स्वविवेकेन ज्ञानेन च आत्मनः उन्नतिं करोति ।</div>
+      <div class="sg-ans-item"><b>(इ)</b> परोपकारः / परोपकारस्य महत्त्वम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (A) गावः (ii) (A) ऋषिः (iii) (B) वृक्षाः (iv) (D) वृक्षेभ्यः</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 2 ==================== -->
+  <div class="sg-panel" id="sg-panel-1">
+    <h2>गद्यांश 2 — पर्यावरणरक्षणम्</h2>
+    <div class="sg-passage">
+      अस्माकम् देशः प्राचीनकालादेव प्राकृतिक-पर्यावरणस्य पोषकः । वैदिककाले यद्यपि पर्यावरणस्य प्रदूषणस्य समस्या नासीत् तथापि वेदेषु स्थाने-स्थाने ऋषीणां पर्यावरणविषयकं चिन्तनं दृश्यते । अद्य पर्यावरण-प्रदूषणं संसारस्य भीषणतमा समस्या वर्तते, परं जनाः अस्याः गाम्भीर्यं न अनुभवन्ति । पर्यावरणं रक्षणीयं वृक्षाः रोपणीयाः रक्षणीयाः च इति शृण्वन्तः उद्घोषयन्तः अपि वयं प्रतिदिनं तेषां कर्तनं पश्यामः । 'प्लास्टिक' इति रसायनेन निर्मितवस्तूनि पर्यावरणाय हानिकराणि इति जानन्तः अपि जनाः एतेषां प्रयोगं बाहुल्येन कुर्वन्ति । पर्यावरणप्रदूषकं धूमं क्षिपतां वाहनानाम् औद्योगिक-यन्त्रागाराणां सङ्ख्या निरन्तरं वर्धमाना अस्ति । यद्यपि विकासाय नवीनाः आविष्काराः, अपेक्षिताः परं सञ्चाराय विस्तृताः सुरक्षिताः मार्गाः जनानां कृते अपि आवश्यकाः एव । यदि पर्यावरणं प्राणिजीवनाय अनुकूलं न भविष्यति तर्हि पृथिव्यां जीवनमेव असम्भवं भविष्यति तदा भौतिकनिकासेन किम् ! अतः सर्वकारः जनसहयोगेन सर्वथा पर्यावरणरक्षणाय यत्नशीलः भवेदिति ।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> के रोपणीयाः रक्षणीयाः च ?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> कदा पर्यावरणस्य प्रदूषणस्य समस्या न आसीत् ?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> अस्माकं देशः कस्य पोषकः ?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> किं जानन्तः जनाः प्लास्टिक-निर्मितवस्तूनां प्रयोगं बाहुल्येन कुर्वन्ति ?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> यदि पर्यावरणं प्राणिजीवनाय अनुकूलं भविष्यति तर्हि किं भविष्यति ?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> केषां सङ्ख्या निरन्तरं वर्धमाना अस्ति ?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत ।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘जनाः अस्य गाम्भीर्यं न अनुभवन्ति’ अत्र किं क्रियापदम् ?</div>
+    <div class="sg-options">
+      <span>(A) जनाः</span><span>(B) अत्र</span>
+      <span>(C) अस्याः</span><span>(D) अनुभवन्ति</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘नवीनाः’ इति विशेषणपदस्य विशेष्यपदं किम् ?</div>
+    <div class="sg-options">
+      <span>(A) जनाः</span><span>(B) आविष्काराः</span>
+      <span>(C) अपेक्षिताः</span><span>(D) मार्गाः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘शोषकः’ इति पदस्य किं विलोमपदं गद्यांशे प्रयुक्तम् ?</div>
+    <div class="sg-options">
+      <span>(A) विषयः</span><span>(B) चिन्तनीयः</span>
+      <span>(C) सरलः</span><span>(D) पोषकः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘वयं प्रतिदिनं तेषां कर्तनं पश्यामः’ अस्मिन् वाक्ये ‘पश्यामः’ क्रियायाः कर्तृपदं किं प्रयुक्तम् ?</div>
+    <div class="sg-options">
+      <span>(A) जनेभ्यः</span><span>(B) सर्वेभ्यः</span>
+      <span>(C) नदीभ्यः</span><span>(D) वृक्षेभ्यः</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 2</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) वृक्षाः (ii) वैदिककाले (iii) प्राकृतिक-पर्यावरणस्य</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) प्लास्टिक-निर्मितवस्तूनि पर्यावरणाय हानिकराणि इति जानन्तः अपि जनाः एतेषां प्रयोगं बाहुल्येन कुर्वन्ति । (ii) यदि पर्यावरणं प्राणिजीवनाय अनुकूलं भविष्यति तर्हि पृथिव्यां जीवनं सम्भवं भविष्यति । (iii) पर्यावरणप्रदूषकं धूमं क्षिपतां वाहनानाम् औद्योगिक-यन्त्रागाराणां च सङ्ख्या निरन्तरं वर्धमाना अस्ति ।</div>
+      <div class="sg-ans-item"><b>(इ)</b> पर्यावरणरक्षणम् / पर्यावरणं रक्षणीयम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (D) अनुभवन्ति (ii) (B) आविष्काराः (iii) (D) पोषकः (iv) (B) सर्वेभ्यः</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 3 ==================== -->
+  <div class="sg-panel" id="sg-panel-2">
+    <h2>गद्यांश 3 — संस्कृतभाषायाः महत्त्वम्</h2>
+    <div class="sg-passage">
+      'संस्कृतभाषा सर्वभाषाणां जननी' इत्युच्यते । परम् अद्यत्वे छात्राणां मध्ये एकः चर्चितः प्रश्नः वर्तते यत् “संस्कृतपठनेन के लाभाः ?” अर्थात् संस्कृतपठनेन जीवनवृत्तेः अवसराः के ? वस्तुतः भौतिके युगे ईदृशी जिज्ञासा स्वाभाविकी एव । अस्याः जिज्ञासायाः समुचितं समाधानं सञ्चारमाध्यमेन कर्तुं शक्यते । वयम् पश्यामः यत् अद्यत्वे संस्कृतपठनेन नैके लाभाः सन्ति । संस्कृतभाषा विश्वस्य प्राचीनतमासु भाषासु अन्यतमा अस्ति । ऐतिहासिकदृष्ट्या संस्कृते लिखिताः ग्रन्थाः वेदाः महत्त्वपूर्णं स्थानं भजन्ते । आधुनिकसंस्कृतस्य वैज्ञानिकभाषारूपेण सर्वत्र महत्त्वपूर्णं स्थानं दृश्यते । यदा विश्वं कृत्रिममेधा विषये अनुसन्धानं करोति तत्र संस्कृतं महत् साहाय्यं कर्तुं शक्नोति । यतो हि संस्कृतस्य व्याकरणं पूर्णतया वैज्ञानिकम् अस्ति । वर्तमान समये संस्कृतस्य अध्येतारः शिक्षणकौशल-चिकित्सा-खगोल-विद्या-वास्तुविद्या-'आई.ए.एस.' प्रभृति सर्वेषु क्षेत्रेषु स्वप्रतिभाप्रदर्शनं कुर्वन्ति । अस्माकं संस्कृतिः संस्कृताधारिता अपि । अत एव संस्कृतभाषायाः अध्ययनं जीवनमूल्यपरकम् जीवनवृत्तिसाधनपरम् च अस्ति, नात्र कोऽपि सन्देहः ।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> सर्वभाषाणां जननी का ?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> अस्माकं संस्कृतिः का आधारिता वर्तते ?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> कस्य व्याकरणं वैज्ञानिकम् ?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ऐतिहासिकदृष्ट्या के महत्त्वपूर्णं स्थानं भजन्ते ?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> वर्तमानसमये शिक्षणकौशलादिषु सर्वेषु क्षेत्रेषु के स्वप्रतिभा-प्रदर्शनं कुर्वन्ति ?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> संस्कृतभाषायाः अध्ययनं कीदृशम् अस्ति ?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत ।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘पश्यामः’ इति क्रियापदस्य कर्तृपदं किम् ?</div>
+    <div class="sg-options">
+      <span>(A) नैके</span><span>(B) वयम्</span>
+      <span>(C) लाभाः</span><span>(D) संस्कृतपठनेन</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘समुचितम्’ इति विशेषणपदस्य विशेष्यपदं किम् ?</div>
+    <div class="sg-options">
+      <span>(A) समाधानम्</span><span>(B) संस्कृतशिक्षकः</span>
+      <span>(C) स्वानुभवैः</span><span>(D) जिज्ञासायाः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘हानयः’ इति पदस्य किं विपर्ययपदं गद्यांशे प्रयुक्तम् ?</div>
+    <div class="sg-options">
+      <span>(A) सन्ति</span><span>(B) लिखिताः</span>
+      <span>(C) लाभाः</span><span>(D) नैके</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘अध्येतारः’ इति कर्तृपदस्य क्रियापदं किं प्रयुक्तम् ?</div>
+    <div class="sg-options">
+      <span>(A) अस्ति</span><span>(B) सन्ति</span>
+      <span>(C) भजन्ते</span><span>(D) कुर्वन्ति</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 3</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) संस्कृतभाषा (ii) संस्कृताधारिता (iii) संस्कृतस्य</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) ऐतिहासिकदृष्ट्या संस्कृते लिखिताः ग्रन्थाः वेदाः महत्त्वपूर्णं स्थानं भजन्ते । (ii) वर्तमानसमये संस्कृतस्य अध्येतारः शिक्षणकौशल-चिकित्सा-खगोल-विद्या-वास्तुविद्या-आई.ए.एस. प्रभृति सर्वेषु क्षेत्रेषु स्वप्रतिभाप्रदर्शनं कुर्वन्ति । (iii) संस्कृतभाषायाः अध्ययनं जीवनमूल्यपरकम् जीवनवृत्तिसाधनपरम् च अस्ति ।</div>
+      <div class="sg-ans-item"><b>(इ)</b> संस्कृतभाषायाः महत्त्वम् / संस्कृतभाषा सर्वभाषाणां जननी</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (B) वयम् (ii) (A) समाधानम् (iii) (C) लाभाः (iv) (D) कुर्वन्ति</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 4 ==================== -->
+  <div class="sg-panel" id="sg-panel-3">
+    <h2>गद्यांश 4 — शरीरम् आद्यं खलु धर्मसाधनम्</h2>
+    <div class="sg-passage">
+      “शरीरमाद्यं खलु धर्मसाधनम्" अर्थात् शरीरम् एव सर्वेषां कर्तव्यानां प्रमुखं साधनं वर्तते । वयं सर्वाणि कार्याणि शरीरेण एव कर्तुं सक्षमाः । यद्यपि सामाजिकम्-धार्मिकम्-राजनैतिकम्-पारिवारिकम्-वैयक्तिककार्याणि च अपि शरीरेण एव भवन्ति परं तथापि वयम् अस्य एव अवहेलनां कुर्मः । अद्य जनाः स्वकार्येषु अत्यधिकं निमग्नाः सन्ति । अतः ते स्वशरीरं प्रति पूर्णतः उदासीनाः दृश्यन्ते । ते न तु समयेन खादन्ति, न पिबन्ति, न व्यायामं कुर्वन्ति, न विश्रामं कुर्वन्ति । वस्तुतः ते स्वस्थं भवितुं किमपि न कुर्वन्ति, केवलं धनं प्राप्तुं व्यग्राः दृश्यन्ते । एतदर्थमेव ते अधुना शरीरेण स्वस्थाः न सन्ति अपितु तेषां शरीरं रोगाणां गृहम् अस्ति । अतः इदम् अस्माकं कर्तव्यं यत् वयं स्वास्थ्यं प्रति जागरूकाः भवेम ।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> शरीरं केषां प्रमुखं साधनम् अस्ति ?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> सर्वाणि कार्याणि केन कर्तुं सक्षमाः ?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> जनाः किं प्राप्तुं व्यग्राः दृश्यन्ते ?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> कानि कानि कार्याणि शरीरेण एव भवन्ति ?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> जनाः कं प्रति पूर्णतः उदासीनाः सन्ति ?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> अस्माकं किं कर्तव्यम् ?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत ।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘भवेम’ इति क्रियापदस्य कर्तृपदं किम् ?</div>
+    <div class="sg-options">
+      <span>(A) वयम्</span><span>(B) ते</span>
+      <span>(C) शरीराणि</span><span>(D) जागरूकाः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘कार्याणि’ इति विशेष्यपदस्य विशेषणपदं किम् ?</div>
+    <div class="sg-options">
+      <span>(A) तानि</span><span>(B) सर्वाणि</span>
+      <span>(C) शरीराणि</span><span>(D) सन्ति</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘समर्थाः’ इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम् ?</div>
+    <div class="sg-options">
+      <span>(A) व्यग्राः</span><span>(B) निमग्नाः</span>
+      <span>(C) सक्षमाः</span><span>(D) जागरूकाः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘जागरूकाः’ इति पदस्य विपर्ययपदं किं प्रयुक्तम् ?</div>
+    <div class="sg-options">
+      <span>(A) निमग्नाः</span><span>(B) उदासीनाः</span>
+      <span>(C) व्यग्राः</span><span>(D) सक्षमाः</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 4</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) सर्वेषां कर्तव्यानां (ii) शरीरेण (iii) धनं प्राप्तुं</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) सामाजिकम्-धार्मिकम्-राजनैतिकम्-पारिवारिकम्-वैयक्तिककार्याणि च शरीरेण एव भवन्ति । (ii) जनाः स्वशरीरं प्रति पूर्णतः उदासीनाः सन्ति । (iii) अस्माकं कर्तव्यम् अस्ति यत् वयं स्वास्थ्यं प्रति जागरूकाः भवेम ।</div>
+      <div class="sg-ans-item"><b>(इ)</b> शरीरम् आद्यं खलु धर्मसाधनम् / स्वास्थ्यस्य महत्त्वम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (A) वयम् (ii) (B) सर्वाणि (iii) (C) सक्षमाः (iv) (B) उदासीनाः</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 5 ==================== -->
+  <div class="sg-panel" id="sg-panel-4">
+    <h2>गद्यांश 5 — चलभाषियन्त्रम्</h2>
+    <div class="sg-passage">
+      "चलभाषियन्त्रम्” वर्तमानयुगस्य जीवनम् एव वर्तते । अस्य मुख्यं प्रयोजनं दूरस्थेन जनेन सह वार्तालापः इति, परम् अद्य अस्माकं जीवनशैली एव अनेन पूर्णतया प्रभाविता वर्तते । अधुना अनेन केवलं वार्ता एव न भवति अपितु वार्तया सहैव वयं प्रियजनं द्रष्टुम् अपि सक्षमाः । अपि च ईमेल-फेसबुक-व्हाटसएप-माध्यमैः वार्ता सुकरा भवति । अस्य माध्यमेन गमनागमनार्थं शीघ्रमेव जनाः सरलतया वाहनं प्राप्नुवन्ति । यदि कदापि वयं मार्ग विस्मरामः तदा उचितं मार्गं प्रदर्शयितुम् अपि इदम् श्रेयस्करम् । न केवलमेतदेव अपितु एतत् यन्त्रं विभिन्नाभिः क्रीडाभिः मनोरञ्जनं चापि करोति, अतः बालाः, वृद्धाः, युवकाः सर्वे एव एतस्य यन्त्रस्य दासाः अभवन् । अधुना तु इदं यन्त्रं मित्रं, विद्यालयः, मार्गदर्शकः च सर्वमपि अभवत् ।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> वर्तमानयुगस्य जीवनं किं वर्तते ?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> के सरलतया वाहनं प्राप्नुवन्ति ?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> एतत् यन्त्रं काभिः मनोरञ्जनं करोति ?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> अद्य चलभाषियन्त्रेण का प्रभाविता वर्तते ?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> अधुना वार्ता कैः सुकरा भवति ?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> के एतस्य यन्त्रस्य दासाः अभवन् ?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत ।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘अभवन्’ इति क्रियापदस्य कर्तृपदं किम् ?</div>
+    <div class="sg-options">
+      <span>(A) युवकाः</span><span>(B) दासाः</span>
+      <span>(C) जनाः</span><span>(D) मार्गदर्शकः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘सुकरा’ इति विशेषणपदस्य विशेष्यपदं किम् ?</div>
+    <div class="sg-options">
+      <span>(A) जनाः</span><span>(B) वार्ता</span>
+      <span>(C) वार्तया</span><span>(D) जीवनशैली</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘हितकरम्’ इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम् ?</div>
+    <div class="sg-options">
+      <span>(A) मनोरञ्जनम्</span><span>(B) सुकरम्</span>
+      <span>(C) प्रयोजनम्</span><span>(D) श्रेयस्करम्</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘कठिनतया’ इति पदस्य विपर्ययपदं किं प्रयुक्तम् ?</div>
+    <div class="sg-options">
+      <span>(A) पूर्णतया</span><span>(B) वार्तया</span>
+      <span>(C) सरलतया</span><span>(D) प्रभावितया</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 5</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) चलभाषियन्त्रम् (ii) जनाः (iii) विभिन्नाभिः क्रीडाभिः</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) अद्य अस्माकं जीवनशैली एव चलभाषियन्त्रेण पूर्णतया प्रभाविता वर्तते । (ii) अधुना ईमेल-फेसबुक-व्हाटसएप-माध्यमैः वार्ता सुकरा भवति । (iii) बालाः, वृद्धाः, युवकाः सर्वे एव एतस्य यन्त्रस्य दासाः अभवन् ।</div>
+      <div class="sg-ans-item"><b>(इ)</b> चलभाषियन्त्रम् / वर्तमानयुगस्य जीवनम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (B) दासाः (ii) (B) वार्ता (iii) (D) श्रेयस्करम् (iv) (C) सरलतया</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 6 ==================== -->
+  <div class="sg-panel" id="sg-panel-5">
+    <h2>गद्यांश 6 — भारतस्य प्राचीनगौरवम्</h2>
+    <div class="sg-passage">
+      पुरास्माकं देशे अजस्रं ज्ञान-विज्ञान-सरिता प्रवाहिता अभवत्। जगति भारतेन एव प्रथमं ज्ञानस्य आलोकः प्रसारितः। वेदानां ज्ञानं तु संसारस्य प्राचीनतमं ज्ञानं मन्यते। अस्माकं देशे एव आयुर्वेदाचार्याः चरक-सुश्रुत-प्रभृतयः चिकित्साशास्त्रस्य महतीं सेवां कृतवन्तः। खगोलविज्ञाने आर्यभट्टः वराहमिहिरः च नूतनान् सिद्धान्तान् प्रतिपादितवन्तौ। एतादृशं महद् गौरवं प्राप्य अपि अद्यतनयुगे वयं स्वकीयं प्राचीनं ज्ञानं विस्मृतवन्तः स्मः। अधुना अस्माकं देशे केवलं पाश्चात्यज्ञानस्य अन्धानुकरणं भवति। अतः देशस्य प्रगत्यै अस्माभिः स्वप्राचीनगौरवस्य परिज्ञानं संरक्षणं च अवश्यमेव करणीयम्।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> जगति केन प्रथमं ज्ञानस्य आलोकः प्रसारितः?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> संसारस्य प्राचीनतमं ज्ञानं किं मन्यते?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> खगोलविज्ञाने कः नूतनं सिद्धान्तं प्रतिपादितवान्?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> चिकित्साशास्त्रस्य महतीं सेवां के कृतवन्तः?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> अद्यतनयुगे वयं किं विस्मृतवन्तः स्मः?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> देशस्य प्रगत्यै अस्माभिः किं करणीयम्?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘प्रतिपादितवन्तौ’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) आर्यभट्टः वराहमिहिरः च</span><span>(B) खगोलविज्ञाने</span>
+      <span>(C) सिद्धान्तान्</span><span>(D) नूतनान्</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘प्राचीनतम्’ इति विशेषणपदस्य विशेष्यपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) वेदानां</span><span>(B) ज्ञानं</span>
+      <span>(C) संसारस्य</span><span>(D) मन्यते</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘संसारः’ इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) जगति</span><span>(B) देशे</span>
+      <span>(C) आलोकः</span><span>(D) गौरवं</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘स्मृतवन्तः’ इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) प्रवाहिता</span><span>(B) विस्मृतवन्तः</span>
+      <span>(C) प्रतिपादितवन्तः</span><span>(D) प्रसारितः</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 6</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) भारतेन (ii) वेदानां ज्ञानं (iii) आर्यभट्टः / वराहमिहिरः</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) चिकित्साशास्त्रस्य महतीं सेवां चरक-सुश्रुत-प्रभृतयः आयुर्वेदाचार्याः कृतवन्तः। (ii) अद्यतनयुगे वयं स्वकीयं प्राचीनं ज्ञानं विस्मृतवन्तः स्मः। (iii) देशस्य प्रगत्यै अस्माभिः स्वप्राचीनगौरवस्य परिज्ञानं संरक्षणं च अवश्यमेव करणीयम्।</div>
+      <div class="sg-ans-item"><b>(इ)</b> भारतस्य प्राचीनगौरवम् / ज्ञान-विज्ञानस्य देशः भारतम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (A) आर्यभट्टः वराहमिहिरः च (ii) (B) ज्ञानं (iii) (A) जगति (iv) (B) विस्मृतवन्तः</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 7 ==================== -->
+  <div class="sg-panel" id="sg-panel-6">
+    <h2>गद्यांश 7 — परोपकाराय सतां विभूतयः</h2>
+    <div class="sg-passage">
+      संसारे दुःखस्य मूलकारणं स्वार्थपरता अस्ति। यदा मनुष्यः केवलं स्वहितं चिन्तयति, तदा सः परोपकारस्य भावनां विस्मरति। परोपकारः एव मानवजीवनस्य श्रेष्ठतमः धर्मः वर्तते। वृक्षाः स्वकीयानि फलानि स्वयं न खादन्ति, नद्यः अपि स्वकीयं जलं स्वयं न पिबन्ति। ते सर्वदा अन्यासां प्राणिनां हिताय एव कार्यं कुर्वन्ति। अतः महापुरुषाः कथयन्ति यत् ‘परोपकाराय सतां विभूतयः’ इति। समाजे ये जनाः परेषाम् उपकारं कुर्वन्ति, ते एव आदरं लभन्ते। यदि वयं जगति सुखं शान्तिं च इच्छामः, तर्हि अस्माभिः स्वार्थं त्यक्त्वा परोपकारस्य मार्गः अनुसरणीयः।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> संसारे दुःखस्य मूलकारणं किम् अस्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> वृक्षाः स्वकीयानि कानि स्वयं न खादन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> मानवजीवनस्य श्रेष्ठतमः धर्मः कः वर्तते?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> नद्यः वृक्षाः च किं कुर्वन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> समाजे के जनाः आदरं लभन्ते?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> जगति सुखं शान्तिं च प्राप्तुं अस्माभिः किं करणीयम्?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘खादन्ति’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) वृक्षाः</span><span>(B) फलानि</span>
+      <span>(C) स्वयं</span><span>(D) नद्यः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘श्रेष्ठतमः’ इति विशेषणपदस्य विशेष्यपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) मानवजीवनस्य</span><span>(B) धर्मः</span>
+      <span>(C) परोपकारः</span><span>(D) वर्तते</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘अन्येषाम्’ इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) स्वकीयं</span><span>(B) परेषाम्</span>
+      <span>(C) सतां</span><span>(D) जनाः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘परार्थपरता’ इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) स्वार्थपरता</span><span>(B) परोपकारः</span>
+      <span>(C) सुखं</span><span>(D) भावनां</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 7</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) स्वार्थपरता (ii) फलानि (iii) परोपकारः</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) वृक्षाः स्वकीयानि फलानि स्वयं न खादन्ति, नद्यः अपि स्वकीयं जलं स्वयं न पिबन्ति। (ii) समाजे ये जनाः परेषाम् उपकारं कुर्वन्ति, ते एव आदरं लभन्ते। (iii) जगति सुखं शान्तिं च प्राप्तुं अस्माभिः स्वार्थं त्यक्त्वा परोपकारस्य मार्गः अनुसरणीयः।</div>
+      <div class="sg-ans-item"><b>(इ)</b> परोपकारस्य महत्त्वम् / परोपकाराय सतां विभूतयः</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (A) वृक्षाः (ii) (B) धर्मः (iii) (B) परेषाम् (iv) (A) स्वार्थपरता</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 8 ==================== -->
+  <div class="sg-panel" id="sg-panel-7">
+    <h2>गद्यांश 8 — विद्याधनम्</h2>
+    <div class="sg-passage">
+      विद्या धनं सर्वधनेषु उत्तमं मन्यते, यतः एतत् धनं न केनापि चोरयितुं शक्यते। भ्रातरः अपि अस्य विभाजनं कर्तुं न शक्नुवन्ति। अन्य धनं तु व्यये कृते नष्टं भवति परं विद्याधनं व्ययेन नित्यं वर्धते एव। विद्यया एव मनुष्यः संसारे विवेकं प्राप्नोति। विवेकशीलः जनः एव कर्तव्याकर्तव्यस्य सम्यक् परिज्ञानं करोति। विद्याहीनः नरः रूपयौवनसम्पन्नः अपि समाजे आदरं न लभते, सः तु सुगन्धरहितः पलाशपुष्पमिव भवति। विदेशगमने विद्या एव परमं मित्रं भूत्वा मनुष्यस्य साहाय्यं करोति। अतः बाल्यकाले एव सर्वैः आदरेण विद्या लब्धव्या।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> सर्वधनेषु उत्तमं किं धनं मन्यते?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> विद्याधनं केन चोरयितुं न शक्यते?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> विदेशगमने परमं मित्रं का भवति?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> विद्याधनस्य का मुख्यविशेषता वर्तते (व्यय सन्दर्भे)?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> विवेकशीलः जनः किं करोति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> विद्याहीनः नरः कीदृशः भवति?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘वर्धते’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) विद्याधनं</span><span>(B) व्ययेन</span>
+      <span>(C) नित्यं</span><span>(D) नष्टं</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘विवेकशीलः’ इति विशेषणपदस्य विशेष्यपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) जनः</span><span>(B) विवेकं</span>
+      <span>(C) मनुष्यः</span><span>(D) समाजे</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> 'विभाजनम्' इत्यर्थे किं पदं गद्यांशे अस्ति?</div>
+    <div class="sg-options">
+      <span>(A) चोरयितुं</span><span>(B) विवेकं</span>
+      <span>(C) साहाय्यं</span><span>(D) विभाजनम्</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> 'स्वदेशे' इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) बाल्यकाले</span><span>(B) विदेशगमने</span>
+      <span>(C) समाजे</span><span>(D) संसारे</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 8</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) विद्या (ii) केनापि (iii) विद्या</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) विद्याधनं व्यये कृते नष्टं न भवति अपितु नित्यं वर्धते एव। (ii) विवेकशीलः जनः कर्तव्याकर्तव्यस्य सम्यक् परिज्ञानं करोति। (iii) विद्याहीनः नरः रूपयौवनसम्पन्नः अपि सुगन्धरहितः पलाशपुष्पमिव भवति।</div>
+      <div class="sg-ans-item"><b>(इ)</b> विद्याधनम् / विद्यायाः महत्त्वम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (A) विद्याधनं (ii) (A) जनः (iii) (D) विभाजनम् (iv) (B) विदेशगमने</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 9 ==================== -->
+  <div class="sg-panel" id="sg-panel-8">
+    <h2>गद्यांश 9 — स्वास्थ्यस्य महत्त्वम्</h2>
+    <div class="sg-passage">
+      अस्माकं शरीरे स्वास्थ्यस्य महती आवश्यकता वर्तते। नीरोगं शरीरं एव सर्वविधानां कार्याणां साधनं भवति। धर्म-अर्थ-काम-मोक्षाणां प्राप्तिः अपि स्वस्थशरीरेण एव सम्भवा अस्ति। स्वास्थ्यरक्षायै सन्तुलितः आहारः, शुद्धं जलं, स्वच्छः वायुः च अत्यावश्यकाः सन्ति। ये जनाः प्रतिदिनं नियमपूर्वकं व्यायामं कुर्वन्ति, तेषां शरीरे रक्तसञ्चारः सम्यक् भवति, रोगाः च दूरं गच्छन्ति। अद्यतनयुगे छात्राः तीव्रगत्या मानसिकतनावं प्राप्नुवन्ति, तस्य निवारणाय योगाभ्यासः परमं औषधं वर्तते। स्वस्थे शरीरे एव स्वस्थं मनः तिष्ठति इति निश्चितम्।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> सर्वविधानां कार्याणां साधनं किं भवति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> कस्य निवारणाय योगाभ्यासः परमं औषधं वर्तते?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> स्वस्थे शरीरे किं तिष्ठति?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> स्वास्थ्यरक्षायै के पदार्थाः अत्यावश्यकाः सन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> व्यायामस्य के लाभाः सन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> स्वस्थ शरीरेण कस्य प्राप्तिः सम्भवा अस्ति?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘तिष्ठति’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) शरीरे</span><span>(B) मनः</span>
+      <span>(C) स्वस्थं</span><span>(D) निश्चितम्</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘सन्तुलितः’ इति विशेषणपदस्य विशेष्यपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) आहारः</span><span>(B) जलं</span>
+      <span>(C) वायुः</span><span>(D) स्वास्थ्यरक्षायै</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> 'रुग्णता' इत्यस्य विपर्ययपदं (विलोम) गद्यांशे किम् अस्ति?</div>
+    <div class="sg-options">
+      <span>(A) नीरोगं</span><span>(B) आहारः</span>
+      <span>(C) रक्तसञ्चारः</span><span>(D) तनावं</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> 'समीपम्' इति पदस्य विलोमपदं गद्यांशे किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) सम्यक्</span><span>(B) दूरं</span>
+      <span>(C) तीव्रगत्या</span><span>(D) महती</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 9</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) नीरोगं शरीरं (ii) मानसिकतनावस्य (iii) स्वस्थं मनः</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) स्वास्थ्यरक्षायै सन्तुलितः आहारः, शुद्धं जलं, स्वच्छः वायुः च अत्यावश्यकाः सन्ति। (ii) व्यायामेन शरीरे रक्तसञ्चारः सम्यक् भवति, रोगाः च दूरं गच्छन्ति। (iii) स्वस्थ शरीरेण धर्म-अर्थ-काम-मोक्षाणां प्राप्तिः सम्भवा अस्ति।</div>
+      <div class="sg-ans-item"><b>(इ)</b> स्वास्थ्यस्य महत्त्वम् / स्वस्थं शरीरम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (B) मनः (ii) (A) आहारः (iii) (A) नीरोगं (iv) (B) दूरं</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 10 ==================== -->
+  <div class="sg-panel" id="sg-panel-9">
+    <h2>गद्यांश 10 — दीपावली उत्सवः</h2>
+    <div class="sg-passage">
+      उत्सवाः समाजस्य जीवनधारा भवन्ति। भारते वर्षे ऋतुपरिवर्तनेन सह अनेके उत्सवाः आयोज्यन्ते। एते उत्सवाः मानवेषु परस्परं स्नेहं, सौहार्दं, भ्रातृभावं च वर्धयन्ति। तेषु ‘दीपावलिः’ प्रमुखः प्रकाशोत्सवः अस्ति, यः कार्तिकमासस्य अमावास्यायां भवति। अस्मिन् दिने मर्यादापुरुषोत्तमः श्रीरामः लङ्कापतिं रावणं हत्वा चतुर्दशवर्षीयं वनवासं समाप्य अयोध्यां प्रत्यागच्छत्। तस्य आगमनेन प्रसन्नाः अयोध्यावासिनः सर्वत्र घृतस्य दीपान् प्रज्वालितवन्तः। अयमुत्सवः अस्मान् तमसो ज्योतिं प्रति गमनाय प्रेरयति।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> समाजस्य जीवनधारा के भवन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> दीपावलिः कस्य मासस्य अमावास्यायां भवति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> श्रीरामः कं हत्वा अयोध्यां प्रत्यागच्छत्?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> उत्सवाः मानवेषु किं वर्धयन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> अयोध्यावासिनः किमर्थं घृतस्य दीपान् प्रज्वालितवन्तः?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> दीपावलिः उत्सवः अस्मान् किं प्रेरयति?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘प्रज्वालितवन्तः’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) अयोध्यावासिनः</span><span>(B) दीपान्</span>
+      <span>(C) घृतस्य</span><span>(D) प्रसन्नाः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘प्रमुखः’ इति विशेषणपदस्य विशेष्यपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) दीपावलिः</span><span>(B) प्रकाशोत्सवः</span>
+      <span>(C) उत्सवः</span><span>(D) मासस्य</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> 'अन्धकारात' इत्यर्थे किं पदं गद्यांशे प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) तमसः</span><span>(B) ज्योतिं</span>
+      <span>(C) प्रकाशोत्सवः</span><span>(D) समाप्य</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> 'द्वेषम्' इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) स्नेहं</span><span>(B) सौहार्दं</span>
+      <span>(C) भ्रातृभावं</span><span>(D) जीवनधारा</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 10</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) उत्सवाः (ii) कार्तिकमासस्य (iii) रावणं</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) उत्सवाः मानवेषु परस्परं स्नेहं, सौहार्दं, भ्रातृभावं च वर्धयन्ति। (ii) श्रीरामस्य आगमनेन प्रसन्नाः अयोध्यावासिनः घृतस्य दीपान् प्रज्वालितवन्तः। (iii) दीपावलिः उत्सवः अस्मान् तमसो ज्योतिं प्रति गमनाय प्रेरयति।</div>
+      <div class="sg-ans-item"><b>(इ)</b> दीपावली उत्सवः / प्रकाशोत्सवः</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (A) अयोध्यावासिनः (ii) (B) प्रकाशोत्सवः (iii) (A) तमसः (iv) (A) स्नेहं</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 11 ==================== -->
+  <div class="sg-panel" id="sg-panel-10">
+    <h2>गद्यांश 11 — महर्षिः दयानन्दः</h2>
+    <div class="sg-passage">
+      पुरा भारतवर्षे महर्षिः दयानन्दः अभवत्। तस्मिन् समये अस्माकं देशे अनेकाः कुप्रथाः प्रचलिताः आसन्। समाजे सर्वत्र अन्धविश्वासः व्याप्तः आसीत्। समाजस्य एतादृशीं दुर्दशां दृष्ट्वा दयानन्दस्य हृदयं व्याकुलम् अभवत्। सः सत्यप्रकाशाय ‘सत्यार्थप्रकाश’ नामकं ग्रन्थं रचितवान्। सः समाजतः जातिवादं, बालविवाहं, स्त्री-अशिक्षां च दूरीकर्तुं महतीं क्रान्तिं कृतवान्। तेन वेदानां प्रचाराय आर्यसमाजस्य स्थापना कृता। महर्षिः दयानन्दः तु भारतस्य नवजागरणस्य पुरोधा आसीत्। अस्माभिः सर्वदा तस्य उपदेशाः पालनीयाः।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> पुरा भारतवर्षे कः अभवत्?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> महर्षिणा वेदानां प्रचाराय कस्य स्थापना कृता?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> दयानन्दः कस्य प्रकाशाय ग्रन्थं रचितवान्?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> समाजस्य दुर्दशां दृष्ट्वा दयानन्दस्य हृदयं कीदृशम् अभवत्?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> महर्षिः दयानन्दः समाजतः काः कुप्रथाः दूरीकर्तुं क्रान्तिं कृतवान्?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> दयानन्दः कं ग्रन्थं रचितवान्?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘अभवत्’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) हृदयं</span><span>(B) दयानन्दः</span>
+      <span>(C) देशे</span><span>(D) समये</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘दुर्दशाम्’ इति विशेष्यपदस्य विशेषणपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) समाजस्य</span><span>(B) एतादृशीं</span>
+      <span>(C) दृष्ट्वा</span><span>(D) व्याकुलम्</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘प्राचीनकाले’ इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) तस्मिन्</span><span>(B) समये</span>
+      <span>(C) पुरा</span><span>(D) सर्वत्र</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘अशिक्षा’ इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) कुप्रथाः</span><span>(B) शिक्षा</span>
+      <span>(C) क्रान्तिः</span><span>(D) नवजागरणस्य</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 11</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) महर्षिः दयानन्दः (ii) आर्यसमाजस्य (iii) सत्यप्रकाशाय</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) समाजस्य एतादृशीं दुर्दशां दृष्ट्वा दयानन्दस्य हृदयं व्याकुलम् अभवत्। (ii) सः समाजतः जातिवादं, बालविवाहं, स्त्री-अशिक्षां च दूरीकर्तुं महतीं क्रान्तिं कृतवान्। (iii) दयानन्दः ‘सत्यार्थप्रकाश’ नामकं ग्रन्थं रचितवान्।</div>
+      <div class="sg-ans-item"><b>(इ)</b> महर्षिः दयानन्दः / भारतस्य नवजागरणम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (B) दयानन्दः (ii) (B) एतादृशीं (iii) (C) पुरा (iv) (B) शिक्षा</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 12 ==================== -->
+  <div class="sg-panel" id="sg-panel-11">
+    <h2>गद्यांश 12 — भारतीयसंस्कृतिः</h2>
+    <div class="sg-passage">
+      भारतीयसंस्कृतिः विश्वस्य सर्वासु संस्कृतिषु श्रेष्ठा प्राचीना च मन्यते। अस्याः संस्कृतेः मूलमन्त्रः ‘वसुधैव कुटुम्बकम्’ इति अस्ति। अस्य अर्थः अस्ति यत् सम्पूर्णैव पृथिवी अस्माकं परिवारः वर्तते। भारते विविधाः धर्माः, विविधाः भाषाः, विविधाः च आचाराः सन्ति, तथापि अत्र सर्वे जनाः स्नेहपूर्वकं मिलित्वा निवसन्ति। अनेकेषां धर्माणां सम्प्रदायानां च सद्भावेन एव अयं देशः जगति आदरं लभते। अतः अस्माकं परमं कर्तव्यं यत् वयं स्वसंस्कृतेः जीवनमूल्यानां रक्षां कुर्याम।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> विश्वस्य सर्वासु संस्कृतिषु का श्रेष्ठा मन्यते?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> अस्याः संस्कृतेः मूलमन्त्रः कः?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> सम्पूर्णैव पृथिवी किमस्ति?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> भारते के के विविधाः सन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> अयं देशः जगति किमर्थं आदरं लभते?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> अस्माकं परमं कर्तव्यं किम् अस्ति?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘लभते’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) देशः</span><span>(B) जगति</span>
+      <span>(C) आदरं</span><span>(D) सद्भावेन</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘संस्कृतिषु’ इति विशेष्यपदस्य विशेषणपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) विश्वस्य</span><span>(B) सर्वासु</span>
+      <span>(C) श्रेष्ठा</span><span>(D) प्राचीना</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> 'जगति' इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) पृथिवी</span><span>(B) देशः</span>
+      <span>(C) संसारे/विश्वस्य</span><span>(D) आचारः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> 'द्वेषपूर्वकम्' इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) स्नेहपूर्वकम्</span><span>(B) विविधं</span>
+      <span>(C) मूलमन्त्रः</span><span>(D) परमं</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 12</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) भारतीयसंस्कृतिः (ii) वसुधैव कुटुम्बकम् (iii) परिवारः (अस्माकं परिवारः)</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) भारते विविधाः धर्माः, विविधाः भाषाः, विविधाः च आचाराः सन्ति। (ii) अनेकेषां धर्माणां सम्प्रदायानां च सद्भावेन एव अयं देशः जगति आदरं लभते। (iii) अस्माकं परमं कर्तव्यं यत् वयं स्वसंस्कृतेः जीवनमूल्यानां रक्षां कुर्याम।</div>
+      <div class="sg-ans-item"><b>(इ)</b> भारतीयसंस्कृतिः / वसुधैव कुटुम्बकम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (A) देशः (ii) (B) सर्वासु (iii) (C) संसारे/विश्वस्य (iv) (A) स्नेहपूर्वकम्</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 13 ==================== -->
+  <div class="sg-panel" id="sg-panel-12">
+    <h2>गद्यांश 13 — संस्कृतभाषा देवभाषा</h2>
+    <div class="sg-passage">
+      संस्कृतभाषा न केवलं भारतस्य अपितु विश्वस्य प्राचीनतमा भाषा अस्ति। इयं भाषा भारतीयसंस्कृतेः प्राणस्वरूपा वर्तते। अस्माकं ऋषयः मुनयः च अस्याम् एव भाषायां ज्ञानविज्ञानस्य ग्रन्थान् अलिखन्। संस्कृतस्य व्याकरणं सुव्यवस्थितं वैज्ञानिकं च मन्यते। अद्यतनयुगे आधुनिकविज्ञानस्य कृते अपि अस्याः भाषायाः उपयोगिता अतीव प्रासङ्गिकी अस्ति। अस्माकं रामायण-महाभारत-सदृशाः महाग्रन्थाः संस्कृतस्य एव गौरवं वर्धयन्ति। अतः एतस्याः भाषायाः संरक्षणं संवर्धनं च प्रत्येकं भारतीयस्य दायित्वम् अस्ति।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> विश्वस्य प्राचीनतमा भाषा का अस्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> संस्कृतभाषा कस्याः प्राणस्वरूपा वर्तते?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> कस्य व्याकरणं सुव्यवस्थितं वैज्ञानिकं च अस्ति?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ऋषयः मुनयः च कस्यां भाषायां ग्रन्थान् अलिखन्?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> के महाग्रन्थाः संस्कृतस्य गौरवं वर्धयन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> प्रत्येकं भारतीयस्य किं दायित्वम् अस्ति?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘अलिखन्’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) ऋषयः</span><span>(B) मुनयः</span>
+      <span>(C) ऋषयः मुनयः च</span><span>(D) ग्रन्थान्</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> 'व्याकरणम्' इति विशेष्यपदस्य विशेषणपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) सुव्यवस्थितं</span><span>(B) वैज्ञानिकं</span>
+      <span>(C) सुव्यवस्थितं वैज्ञानिकं च</span><span>(D) मन्यते</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘उत्तरदायित्वम्’ इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) संरक्षणम्</span><span>(B) दायित्वम्</span>
+      <span>(C) उपयोगिता</span><span>(D) गौरवं</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘नवीनतमा’ इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) प्राचीनतमा</span><span>(B) प्रासङ्गिकी</span>
+      <span>(C) अतीव</span><span>(D) आधुना</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 13</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) संस्कृतभाषा (ii) भारतीयसंस्कृतेः (iii) संस्कृतस्य</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) ऋषयः मुनयः च अस्याम् (संस्कृत) एव भाषायां ज्ञानविज्ञानस्य ग्रन्थान् अलिखन्। (ii) रामायण-महाभारत-सदृशाः महाग्रन्थाः संस्कृतस्य गौरवं वर्धयन्ति। (iii) एतस्याः भाषायाः संरक्षणं संवर्धनं च प्रत्येकं भारतीयस्य दायित्वम् अस्ति।</div>
+      <div class="sg-ans-item"><b>(इ)</b> संस्कृतभाषायाः महत्त्वम् / देवभाषा संस्कृतम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (C) ऋषयः मुनयः च (ii) (C) सुव्यवस्थितं वैज्ञानिकं च (iii) (B) दायित्वम् (iv) (A) प्राचीनतमा</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 14 ==================== -->
+  <div class="sg-panel" id="sg-panel-13">
+    <h2>गद्यांश 14 — उत्तमं स्वास्थ्यम्</h2>
+    <div class="sg-passage">
+      उत्तमं स्वास्थ्यम् एव मनुष्यस्य परमं धनं वर्तते। स्वस्थे शरीरे एव स्वस्थं मनः निवसति। अस्वस्थः जनः जीवने किमपि सुखं भोक्तुं न शक्नोति। स्वास्थ्यरक्षायै सन्तुलितः आहारः, शुद्धं जलं, नियमितः व्यायामः च अतीव आवश्यकाः सन्ति। प्रातःकाले भ्रमणं शरीरे ऊर्जां जनयति। आधुनिकयुगे जनाः समयभावात् आलस्यवशात् वा शारीरिकश्रमं न कुर्वन्ति, येन ते अनेकेषां रोगाणां भक्ष्याः भवन्ति। अतः अस्माभिः स्वास्थ्यस्य नियमानां दृढतया पालनं करणीयम्।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> मनुष्यस्य परमं धनं किम् अस्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> स्वस्थे शरीरे किं निवसति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> प्रातःकाले भ्रमणं शरीरे किं जनयति?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> स्वास्थ्यरक्षायै के के तत्त्वानि आवश्यकाः सन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> अस्वस्थः जनः किं कर्तुं न शक्नोति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> आधुनिकयुगे जनाः किमर्थं शारीरिकश्रमं न कुर्वन्ति?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘निवसति’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) शरीरे</span><span>(B) मनः</span>
+      <span>(C) स्वस्थं</span><span>(D) धनं</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘आहारः’ इति विशेष्यपदस्य विशेषणपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) सन्तुलितः</span><span>(B) शुद्धं</span>
+      <span>(C) नियमितः</span><span>(D) आवश्यकः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> 'काया' इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) मनः</span><span>(B) शरीरे</span>
+      <span>(C) धनं</span><span>(D) व्यायामः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> 'दुर्बलताम्' इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) ऊर्जां</span><span>(B) श्रमं</span>
+      <span>(C) स्वास्थ्यं</span><span>(D) आलस्यं</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 14</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) उत्तमं स्वास्थ्यम् (ii) स्वस्थं मनः (iii) ऊर्जां</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) स्वास्थ्यरक्षायै सन्तुलितः आहारः, शुद्धं जलं, नियमितः व्यायामः च अतीव आवश्यकाः सन्ति। (ii) अस्वस्थः जनः जीवने किमपि सुखं भोक्तुं न शक्नोति। (iii) आधुनिकयुगे जनाः समयभावात् आलस्यवशात् वा शारीरिकश्रमं न कुर्वन्ति।</div>
+      <div class="sg-ans-item"><b>(इ)</b> स्वास्थ्यं परमं धनम् / उत्तमं स्वास्थ्यम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (B) मनः (ii) (A) सन्तुलितः (iii) (B) शरीरे (iv) (A) ऊर्जां</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 15 ==================== -->
+  <div class="sg-panel" id="sg-panel-14">
+    <h2>गद्यांश 15 — परोपकारिणः वृक्षाः</h2>
+    <div class="sg-passage">
+      वृक्षाः परोपकाराय एव फलन्ति जीवन्ति च। ते अस्माकं पर्यावरणस्य रक्षकाः सन्ति। वृक्षाः न केवलं छायां फलानि च ददन्ति, अपितु ते वायुं शुद्धं कुर्वन्ति। ते प्राणिभ्यः प्राणवायुं (ऑक्सीजन) यच्छन्ति, स्वयं च मलीनवायुं (कार्बन-डाइऑक्साइड) पिबन्ति। वृक्षाणां अभावे भूमिप्रदूषणं, जलसङ्कटं च वर्धते। आधुनिके समये मानवाः स्वार्थान्धाः भूत्वा वृक्षाणां निरन्तरं छेदनं कुर्वन्ति, यत् मानवजातेः कृते महती चिन्तायाः विषयः अस्ति। अतः अस्माभिः वृक्षारोपणं कृत्वा तेषां रक्षणं करणीयम्।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> वृक्षाः किमर्थं फलन्ति जीवन्ति च?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> वृक्षाः प्राणिभ्यः किं यच्छन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> वृक्षाणां अभावे किं वर्धते?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> वृक्षाः किं किं कुर्वन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> आधुनिके समये मानवाः स्वार्थान्धाः भूत्वा किं कुर्वन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> मानवजातेः कृते कः महती चिन्तायाः विषयः अस्ति?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘यच्छन्ति’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) प्राणिभ्यः</span><span>(B) वृक्षाः (तथा च 'ते')</span>
+      <span>(C) प्राणवायुं</span><span>(D) मलीनवायुं</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘चिन्तायाः’ इति विशेष्यपदस्य विशेषणपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) महती</span><span>(B) विषयः</span>
+      <span>(C) मानवजातेः</span><span>(D) अस्ति</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘तरवः’ इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) वृक्षाः</span><span>(B) फलानि</span>
+      <span>(C) मानवाः</span><span>(D) प्राणिभ्यः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘अशुद्धम्’ इति पदस्य विलोमं किम्?</div>
+    <div class="sg-options">
+      <span>(A) शुद्धं</span><span>(B) मलीन</span>
+      <span>(C) चिन्ता</span><span>(D) रक्षकः</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 15</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) परोपकाराय (ii) प्राणवायुं (iii) भूमिप्रदूषणं, जलसङ्कटं च</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) वृक्षाः वायुं शुद्धं कुर्वन्ति, प्राणिभ्यः प्राणवायुं यच्छन्ति। (ii) आधुनिके समये मानवाः स्वार्थान्धाः भूत्वा वृक्षाणां निरन्तरं छेदनं कुर्वन्ति। (iii) मानवाः स्वार्थान्धाः भूत्वा वृक्षाणां निरन्तरं छेदनं कुर्वन्ति, यत् मानवजातेः कृते महती चिन्तायाः विषयः अस्ति।</div>
+      <div class="sg-ans-item"><b>(इ)</b> वृक्षाणां महत्त्वम् / परोपकारिणः वृक्षाः</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (B) वृक्षाः (ii) (A) महती (iii) (A) वृक्षाः (iv) (A) शुद्धं</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 16 ==================== -->
+  <div class="sg-panel" id="sg-panel-15">
+    <h2>गद्यांश 16 — सत्सङ्गतिः</h2>
+    <div class="sg-passage">
+      सत्सङ्गतिः नाम सज्जनानां मित्रता वा संसर्गः। मानवजीवनस्य विकासे सत्सङ्गतेः महती भूमिका भवति। यादृशैः जनैः सह वयं निवसामः, तादृशाः एव गुणाः दोषाः वा अस्मासु अपि आगच्छन्ति। सत्सङ्गत्या मनुष्यस्य अज्ञानं दूरीभवति, तस्य बुद्धिः च तीक्ष्णा भवति। सा वाचि सत्यं सिञ्चति, कीर्तिं च दिक्षु तनोति। दुर्जनानां संसर्गेण मनुष्यः कुमार्गं गच्छति, परं सज्जनानां सङ्गत्या तस्य जीवनं प्रकाशमयं भवति। अतः नीतिशास्त्राणि अपि सर्वदा कुसङ्गतिं त्यक्त्वा सत्सङ्गतिं कर्तुम् उपदिशन्ति।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> सत्सङ्गतिः नाम केषां संसर्गः?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> सत्सङ्गतेः महती भूमिका कस्य विकासे भवति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> सत्सङ्गत्या कस्य अज्ञानं दूरीभवति?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> सत्सङ्गतिः मानवे किं परिवर्तयति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> दुर्जनानां संसर्गेण मनुष्यः कुत्र गच्छति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> नीतिशास्त्राणि किं कर्तुम् उपदिशन्ति?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘तनोति’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) कीर्तिं</span><span>(B) सत्सङ्गतिः/सा</span>
+      <span>(C) दिक्षु</span><span>(D) बुद्धिः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘भूमिका’ इति विशेष्यपदस्य विशेषणपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) महती</span><span>(B) विकासे</span>
+      <span>(C) मानवजीवनस्य</span><span>(D) भवति</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘यशः’ इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) अज्ञानं</span><span>(B) बुद्धिः</span>
+      <span>(C) कीर्तिम्</span><span>(D) सत्यं</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘सज्जनानाम्’ इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) गुणाः</span><span>(B) दुर्जनानाम्</span>
+      <span>(C) नीतिशास्त्राणि</span><span>(D) मनुष्याणाम्</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 16</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) सज्जनानाम् (ii) मानवजीवनस्य (iii) मनुष्यस्य</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) सत्सङ्गतिः कीर्तिं दिक्षु तनोति। (ii) दुर्जनानां संसर्गेण मनुष्यः कुमार्गं गच्छति। (iii) नीतिशास्त्राणि सर्वदा कुसङ्गतिं त्यक्त्वा सत्सङ्गतिं कर्तुम् उपदिशन्ति।</div>
+      <div class="sg-ans-item"><b>(इ)</b> सत्सङ्गतिः / सत्सङ्गतेः महत्त्वम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (B) सत्सङ्गतिः/सा (ii) (A) महती (iii) (C) कीर्तिम् (iv) (B) दुर्जनानाम्</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 17 ==================== -->
+  <div class="sg-panel" id="sg-panel-16">
+    <h2>गद्यांश 17 — अनुशासनस्य महत्त्वम्</h2>
+    <div class="sg-passage">
+      अनुशासनं नाम नियमानां पालनम्। समाजे, विद्यालये, गृहे च नियमानां पालनेन एव सुखं शान्तिः च सम्भवति। प्रकृतौ अपि वयं सर्वत्र अनुशासनं पश्यामः। सूर्यः नियतसमये एव उदेति अस्तं च गच्छति। ऋतवः अपि अनुशासनेन क्रमेण आगच्छन्ति। छात्रजीवने अनुशासनस्य सर्वाधिकं महत्त्वं वर्तते। यः छात्रः अनुशासितः भूत्वा गुरुन् आदरात् नमति, समये च अध्ययनं करोति, सः एव जीवने सफलतां लभते। अनुशासनेन विना कस्यापि राष्ट्रस्य उन्नतिः असम्भवा वर्तते। अतः सर्वैः नागरिकैः अनुशासितेन भवितव्यम्।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> अनुशासनं नाम केषां पालनम्?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> कः नियतसमये एव उदेति अस्तं च गच्छति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> कस्मिन् जीवने अनुशासनस्य सर्वाधिकं महत्त्वं वर्तते?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> नियमानां पालनेन कुत्र सुखं शान्तिः च सम्भवति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> कीदृशः छात्रः जीवने सफलतां लभते?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> अनुशासनेन विना कस्य उन्नतिः असम्भवा वर्तते?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘लभते’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) छात्रः</span><span>(B) सफलतां</span>
+      <span>(C) जीवने</span><span>(D) अनुशासनस्य</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘उन्नतिः’ इति विशेष्यपदस्य विशेषणपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) विना</span><span>(B) राष्ट्रस्य</span>
+      <span>(C) असम्भवा</span><span>(D) वर्तते</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> 'नियमम्' इत्यर्थे बहुवचने किं पदं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) नियमानाम्</span><span>(B) पालनेन</span>
+      <span>(C) क्रमेण</span><span>(D) नागरिकैः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> 'अवनतिः' इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) उन्नतिः</span><span>(B) सुखं</span>
+      <span>(C) शान्तिः</span><span>(D) असम्भवा</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 17</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) नियमानाम् (ii) सूर्यः (iii) छात्रजीवने</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) नियमानां पालनेन समाजे, विद्यालये, गृहे च सुखं शान्तिः च सम्भवति। (ii) यः छात्रः अनुशासितः भूत्वा गुरुन् आदरात् नमति, समये च अध्ययनं करोति, सः जीवने सफलतां लभते। (iii) अनुशासनेन विना कस्यापि राष्ट्रस्य उन्नतिः असम्भवा वर्तते।</div>
+      <div class="sg-ans-item"><b>(इ)</b> अनुशासनस्य महत्त्वम् / अनुशासितं जीवनम्</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (A) छात्रः (ii) (C) असम्भवा (iii) (A) नियमानाम् (iv) (A) उन्नतिः</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 18 ==================== -->
+  <div class="sg-panel" id="sg-panel-17">
+    <h2>गद्यांश 18 — दीपावलि-महोत्सवः</h2>
+    <div class="sg-passage">
+      अस्माकं भारतदेशः उत्सवानां देशः अस्ति। एतेषु उत्सवेषु दीपावलिः इति प्रमुखः उत्सवः वर्तते। एषः प्रकाशस्य उत्सवः अस्ति। कार्तिकमासस्य अमावास्यायां तिथौ अयमुत्सवः सोत्साहं मान्यते। कथ्यते यत् अस्मिन् दिने मर्यादापुरुषोत्तमः श्रीरामः चतुर्दशवर्षीयं वनवासं समाप्य रावणं च जित्वा अयोध्यां प्रत्यागच्छत्। तदा प्रीत्या अयोध्यावासिनः गृहे गृहे घृतस्य दीपान् प्रज्वालितवन्तः। दीपावलि-महोत्सवे रात्रौ धनदेवी लक्ष्मीः सुखदाता गणेशः च पूज्येते। जनाः परस्परं मिष्टान्नानि वितरन्ति, प्रसन्नता च अनुभवन्ति।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> अस्माकं भारतदेशः केषां देशः अस्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> दीपावलिः कस्य उत्सवः अस्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> दीपावलि-महोत्सवे रात्रौ का पूज्यते?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> श्रीरामः कतिवर्षीयं वनवासं समाप्य अयोध्यां प्रत्यागच्छत्?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> अयोध्यावासिनः किमर्थं घृतस्य दीपान् प्रज्वालितवन्तः?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> दीपावलि-उत्सवे रात्रौ केषां पूजनं भवति? जनाः किं वितरन्ति?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘प्रज्वालितवन्तः’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) दीपान्</span><span>(B) अयोध्यावासिनः</span>
+      <span>(C) घृतस्य</span><span>(D) गृहे गृहे</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘उत्सवः’ इति विशेष्यपदस्य विशेषणपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) प्रमुखः</span><span>(B) देशः</span>
+      <span>(C) वर्तते</span><span>(D) दीपावलिः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> ‘स्नेहेन’ इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) सोत्साहं</span><span>(B) प्रीत्या</span>
+      <span>(C) प्रत्यागच्छत्</span><span>(D) रात्रौ</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘दुःखदाता’ इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) मर्यादापुरुषोत्तमः</span><span>(B) सुखदाता</span>
+      <span>(C) प्रसन्नता</span><span>(D) अमावास्यायां</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 18</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) उत्सवानाम् (ii) प्रकाशस्य (iii) लक्ष्मीः</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) श्रीरामः चतुर्दशवर्षीयं वनवासं समाप्य अयोध्यां प्रत्यागच्छत्। (ii) श्रीरामस्य रावणं जित्वा अयोध्या आगमनस्य प्रसङ्गे प्रीत्या अयोध्यावासिनः घृतस्य दीपान् प्रज्वालितवन्तः। (iii) दीपावलि-उत्सवे रात्रौ लक्ष्मी-गणेशयोः पूजनं भवति तथा च जनाः परस्परं मिष्टान्नानि वितरन्ति।</div>
+      <div class="sg-ans-item"><b>(इ)</b> दीपावलि-महोत्सवः / उत्सवानां देशः भारतः</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (B) अयोध्यावासिनः (ii) (A) प्रमुखः (iii) (B) प्रीत्या (iv) (B) सुखदाता</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 19 ==================== -->
+  <div class="sg-panel" id="sg-panel-18">
+    <h2>गद्यांश 19 — परिश्रमस्य महत्त्वम्</h2>
+    <div class="sg-passage">
+      परिश्रमः (श्रमः) एव मानवजीवनस्य सफलतायाः आधारः अस्ति। संसारे यः जनः उद्योगं (परिश्रमं) करोति, सः एव सुखं लभते। श्रमं विना किमपि कार्यं सिद्धं न भवति। 'उद्यमेन हि सिध्यन्ति कार्याणि न मनोरथैः' इति सत्यमेव उक्तम्। आलस्यं तु मनुष्यस्य शरीरस्थः महान् शत्रुः अस्ति। आलसी मनुष्यः समाजस्य कृते भारस्वरूपः भवति। छात्रजीवने परिश्रमस्य महत्त्वं सर्वोपरि वर्तते। ये छात्राः रात्रौ दिवसे च कठिनं श्रमं कुर्वन्ति, ते एव परीक्षायां सर्वोच्चं स्थानं लभन्ते। अतः अस्माभिः आलस्यं त्यक्त्वा सर्वदा श्रमेण एव कार्याणि करणीयानि।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> मानवजीवनस्य सफलतायाः आधारः कः अस्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> मनुष्यस्य शरीरस्थः महान् शत्रुः कः अस्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> कार्याणि केन सिध्यन्ति?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> आलसी मनुष्यः समाजस्य कृते कीदृशः भवति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> के छात्राः परीक्षायां सर्वोच्चं स्थानं लभन्ते?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> गद्यांशानुसारं सत्यं किं उक्तम्?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘लभन्ते’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) छात्राः</span><span>(B) परीक्षायां</span>
+      <span>(C) स्थानं</span><span>(D) श्रमं</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘शत्रुः’ इति विशेष्यपदस्य विशेषणपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) महान्</span><span>(B) आलस्यं</span>
+      <span>(C) मनुष्यस्य</span><span>(D) शरीरस्थः</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> 'उद्योगः' इति पदस्य किं पर्यायपदं गद्यांशे प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) आधारः</span><span>(B) परिश्रमः/श्रमः</span>
+      <span>(C) सुखं</span><span>(D) कार्यं</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> 'श्रमेण' इति पदस्य विपर्ययपदं किम् अस्ति?</div>
+    <div class="sg-options">
+      <span>(A) आलस्येन (आलस्यं)</span><span>(B) उद्योगं</span>
+      <span>(C) सफलतायाः</span><span>(D) कठिनं</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 19</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) परिश्रमः/श्रमः (ii) आलस्यं (iii) उद्यमेन</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) आलसी मनुष्यः समाजस्य कृते भारस्वरूपः भवति। (ii) ये छात्राः रात्रौ दिवसे च कठिनं श्रमं कुर्वन्ति, ते एव परीक्षायां सर्वोच्चं स्थानं लभन्ते। (iii) 'उद्यमेन हि सिध्यन्ति कार्याणि न मनोरथैः' इति सत्यमेव उक्तम्।</div>
+      <div class="sg-ans-item"><b>(इ)</b> परिश्रमस्य महत्त्वम् / उद्योगः एव सफलतायाः आधारः</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (A) छात्राः (ii) (A) महान् (iii) (B) परिश्रमः/श्रमः (iv) (A) आलस्येन (गद्यांश के अनुसार आलस्यम्)</div>
+    </div>
+  </div>
+
+  <!-- ==================== गद्यांश 20 ==================== -->
+  <div class="sg-panel" id="sg-panel-19">
+    <h2>गद्यांश 20 — सङ्गणकयन्त्रम्</h2>
+    <div class="sg-passage">
+      सङ्गणकयन्त्रम् (Computer) आधुनिकविज्ञानस्य सर्वोत्कृष्टः आविष्कारः अस्ति। अद्यतनयुगे सङ्गणकेन विना जीवनस्य कल्पना एव दुष्करा प्रतिभाति। कार्यालयेषु, चिकित्सालयेषु, रेलस्थानेषु, विद्यालयेषु च सर्वत्र सङ्गणकस्य साहाय्येन एव कार्याणि शीघ्रं शुद्धं च भवन्ति। अन्तर्जालस्य (Internet) माध्यमेन वयं क्षणाभ्यन्तरे एव देश-विदेशस्य सर्वं समाचारं ज्ञातुं शक्नुमः। अनेन यन्त्रेण विशाला गणना अपि निमेषमात्रेण सरला भवति। परम् अस्य यन्त्रस्य अतीव प्रयोगेण छात्राणां स्वास्थ्याय नेत्राणाम् उपरि च कुप्रभावः अपि भवति। अतः विवेकपूर्णः उपयोगः एव श्रेयस्करः।
+    </div>
+
+    <div class="sg-section-title">(अ) एकपदेन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> सङ्गणकयन्त्रं कस्य सर्वोत्कृष्टः आविष्कारः अस्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> कस्य साहाय्येन कार्याणि शीघ्रं शुद्धं च भवन्ति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> कस्य माध्यमेन वयं क्षणाभ्यन्तरे देश-विदेशस्य समाचारं जानीमः?</div>
+
+    <div class="sg-section-title">(आ) पूर्णवाक्येन उत्तरत — (केवलं प्रश्नद्वयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> अद्यतनयुगे कस्य विना जीवनस्य कल्पना दुष्करा प्रतिभाति?</div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> सङ्गणकस्य अतीव प्रयोगेण किं भवति?</div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> सङ्गणकयन्त्रेण विशाला गणना कथं भवति?</div>
+
+    <div class="sg-section-title">(इ) शीर्षकम्</div>
+    <div class="sg-q">अस्य अनुच्छेदस्य कृते उपयुक्तं शीर्षकं संस्कृतेन लिखत।</div>
+
+    <div class="sg-section-title">(ई) यथानिर्देशम् उत्तरत — (केवलं प्रश्नत्रयम्)</div>
+    <div class="sg-q"><span class="sg-qnum">(i)</span> ‘प्रतिभाति’ इति क्रियापदस्य कर्तृपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) कल्पना</span><span>(B) जीवनस्य</span>
+      <span>(C) सङ्गणकेन</span><span>(D) दुष्करा</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(ii)</span> ‘आविष्कारः’ इति विशेष्यपदस्य विशेषणपदं किम्?</div>
+    <div class="sg-options">
+      <span>(A) सर्वोत्कृष्टः</span><span>(B) आधुनिकविज्ञानस्य</span>
+      <span>(C) यन्त्रम्</span><span>(D) अस्ति</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iii)</span> 'कठिना' इति पदस्य विलोमं किम् अत्र प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) सरला</span><span>(B) विशाला</span>
+      <span>(C) शुद्धं</span><span>(D) शीघ्रं</span>
+    </div>
+    <div class="sg-q"><span class="sg-qnum">(iv)</span> ‘मन्दम्’ इति पदस्य विपर्ययपदं किं प्रयुक्तम्?</div>
+    <div class="sg-options">
+      <span>(A) शीघ्रं</span><span>(B) सर्वत्र</span>
+      <span>(C) अतीव</span><span>(D) विवेकपूर्णः</span>
+    </div>
+
+    <button class="sg-answer-btn" onclick="sgToggleAns(this)"></button>
+    <div class="sg-answer-box">
+      <h4>उत्तर-कुञ्जिका — गद्यांश 20</h4>
+      <div class="sg-ans-item"><b>(अ)</b> (i) आधुनिकविज्ञानस्य (ii) सङ्गणकस्य (iii) अन्तर्जालस्य</div>
+      <div class="sg-ans-item"><b>(आ)</b> (i) अद्यतनयुगे सङ्गणकेन विना जीवनस्य कल्पना एव दुष्करा प्रतिभाति। (ii) सङ्गणकस्य अतीव प्रयोगेण छात्राणां स्वास्थ्याय नेत्राणाम् उपरि च कुप्रभावः भवति। (iii) सङ्गणकयन्त्रेण विशाला गणना अपि निमेषमात्रेण सरला भवति।</div>
+      <div class="sg-ans-item"><b>(इ)</b> सङ्गणकयन्त्रस्य उपयोगिता / आधुनिकविज्ञानस्य चमत्कारः</div>
+      <div class="sg-ans-item"><b>(ई)</b> (i) (A) कल्पना (ii) (A) सर्वोत्कृष्टः (iii) (A) सरला (iv) (A) शीघ्रं</div>
+    </div>
+  </div>
+
+  <div class="sg-footer">
+    <a href="https://www.sanskritgyan.in" target="_blank">www.sanskritgyan.in</a>
+  </div>
+</div>
+
+<script>
+function sgShow(index) {
+  var panels = document.querySelectorAll('.sg-panel');
+  var btns = document.querySelectorAll('.sg-tab-btn');
+  for (var i = 0; i < panels.length; i++) {
+    panels[i].classList.remove('active');
+    btns[i].classList.remove('active');
+  }
+  panels[index].classList.add('active');
+  btns[index].classList.add('active');
+}
+
+function sgToggleAns(btn) {
+  var box = btn.nextElementSibling;
+  if (box.classList.contains('open')) {
+    box.classList.remove('open');
+    btn.classList.remove('open');
+  } else {
+    box.classList.add('open');
+    btn.classList.add('open');
+  }
+}
+</script>
+
+</body>
+</html>
